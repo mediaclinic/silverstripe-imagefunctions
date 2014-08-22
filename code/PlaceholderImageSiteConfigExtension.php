@@ -23,18 +23,18 @@ class PlaceholderImageSiteConfigExtension extends DataExtension
 
     /**
      * Returns a FieldList with which to create the editing form. {@link SiteTree::getCMSFields()}
-     *
-     * @return FieldList
      */
     public function updateCMSFields(FieldList $fields)
     {
-        $placeholderImageUploadField = new UploadField('PlaceholderImage', _t('PlaceholderImageSiteConfigExtension.PLACEHOLDERIMAGE', 'Placeholder Image'));
+        $placeholderImageUploadField = new UploadField(
+            'PlaceholderImage',
+            _t('PlaceholderImageSiteConfigExtension.PLACEHOLDERIMAGE', 'Placeholder Image')
+        );
         $placeholderImageUploadField->allowedExtensions = array('jpg', 'gif', 'png');
 
-		$fields->findOrMakeTab('Root.Images', _t('PlaceholderImageSiteConfigExtension.TABIMAGES','Image placeholder'));
-		$fields->addFieldsToTab('Root.Images', array(
-			$placeholderImageUploadField
-		));
+        $fields->findOrMakeTab('Root.Images', _t('PlaceholderImageSiteConfigExtension.IMAGES', 'Images'));
+
+        $fields->addFieldToTab('Root.Images', $placeholderImageUploadField);
     }
 
 }
